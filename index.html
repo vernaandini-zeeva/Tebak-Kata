@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tebak Kata</title>
+</head>
+<body>
+  <h2>Game Tebak Kata</h2>
+  <p id="scrambled"></p>
+  <input type="text" id="guess" placeholder="Masukkan tebakan">
+  <button onclick="cekTebakan()">Tebak</button>
+  <p id="result"></p>
+
+  <script>
+    const katalis = ["imut", "lucu", "cantik", "ganteng", "hebat", "mempertanggungjawabkan", "taesan", "bahlil", "skibidi", 'slebew',];
+    let kataBenar = katalis[Math.floor(Math.random() * katalis.length)];
+    function sembunyikanHuruf(kata) {
+      let arr = kata.split('');
+      for (let i = 1; i < arr.length; i += 2) {
+        arr[i] = "_";
+      }
+      return arr.join('');
+    }
+    document.getElementById("scrambled").innerText = sembunyikanHuruf(kataBenar);
+    function cekTebakan() {
+      const tebakan = document.getElementById("guess").value.toLowerCase();
+      const hasil = document.getElementById("result");
+
+      if (tebakan === kataBenar) {
+        hasil.innerText = "Selamat! Tebakan Anda benar.";
+      } else {
+        hasil.innerText = "Tebakan salah. Coba lagi!";
+      }
+    }
+  </script>
+</body>
+</html>
